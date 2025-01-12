@@ -216,8 +216,12 @@ body {
 
 
 .search-container {
-  max-width: 600px;
+  max-width: 1200px;
   margin: 2rem auto;
+  padding: 1rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 
@@ -252,8 +256,12 @@ body {
 
 
 .timetable-search-container {
-  max-width: 600px;
+  max-width: 1200px;
   margin: 2rem auto;
+  padding: 1rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 
@@ -262,6 +270,8 @@ body {
   margin-bottom: 1rem;
   color: #3f51b5;
 }
+
+
 
 .timetable-search-container .form-field {
   margin-bottom: 1rem;
@@ -349,21 +359,3 @@ body {
   font-weight: bold;
 }
 
-
-.sidenav-container {
-  height: 100vh;
-}
-
-.sidenav-container .sidenav {
-  width: 240px;
-  background: #fafafa;
-}
-
-.sidenav-container mat-icon {
-  margin-right: 16px;
-}
-
-.sidenav-container .active {
-  font-weight: bold;
-  color: yellow;
-}
