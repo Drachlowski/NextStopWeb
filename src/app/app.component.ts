@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { SidebarComponent } from "./shared/sidebar/sidebar.component";
+import { authConfig } from './auth.config';
+import { OAuthService } from 'angular-oauth2-oidc';
 
 @Component({
   selector: 'app-root',
@@ -11,4 +13,13 @@ import { SidebarComponent } from "./shared/sidebar/sidebar.component";
 })
 export class AppComponent {
   title = 'NextStop';
+
+  constructor(private oauthService: OAuthService) {
+    this.configureWithNewConfigApi();
+  }
+
+  private configureWithNewConfigApi() {
+    this.oauthService.configure(authConfig);
+    this.oauthService.loadDiscoveryDocumentAndTryLogin();
+  }
 }

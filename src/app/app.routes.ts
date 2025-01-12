@@ -1,4 +1,6 @@
 import { Routes } from '@angular/router';
+import { canNavigateToAdminGuard } from './core/guards/can-navigate-to-admin.guard';
+import { LoginComponent } from './admin/login/login.component';
 
 export const routes: Routes = [
 
@@ -8,6 +10,7 @@ export const routes: Routes = [
       import('./admin/holiday-management/holiday-management.routes').then(
         (m) => m.HOLIDAY_MANAGEMENT_ROUTES
       ),
+      canActivate: [canNavigateToAdminGuard]
   },
   {
     path: 'admin/stops',
@@ -15,6 +18,7 @@ export const routes: Routes = [
       import('./admin/stop-management/stop-management.routes').then(
         (m) => m.STOP_MANAGEMENT_ROUTES
       ),
+      canActivate: [canNavigateToAdminGuard]
   },
   {
     path: 'admin/routes',
@@ -22,6 +26,7 @@ export const routes: Routes = [
       import('./admin/route-management/route-management.routes').then(
         (m) => m.ROUTE_MANAGEMENT_ROUTES
       ),
+      canActivate: [canNavigateToAdminGuard]
   },
   {
     path: 'user/stop-search',
@@ -38,6 +43,10 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
     path: 'user/display-boards',
     loadChildren: () => {
       return import('./user/display-boards/display-boards.routes').then(
@@ -45,6 +54,6 @@ export const routes: Routes = [
       );
     }
   },
-  { path: '', redirectTo: 'admin/holidays', pathMatch: 'full' },
-  { path: '**', redirectTo: 'admin/holidays' }
+  { path: '', redirectTo: 'user/timetable', pathMatch: 'full' },
+  { path: '**', redirectTo: 'user/timetable' }
 ];

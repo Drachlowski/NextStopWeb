@@ -4,6 +4,7 @@ import { LOCALE_ID } from '@angular/core';
 import { MAT_DATE_FORMATS } from '@angular/material/core';
 import { registerLocaleData } from '@angular/common';
 import localeDe from '@angular/common/locales/de';
+import { OAuthModule, provideOAuthClient } from 'angular-oauth2-oidc';
 
 import { routes } from './app.routes';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
@@ -27,6 +28,7 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideHttpClient(withInterceptorsFromDi()),
     provideRouter(routes),
+    provideOAuthClient(),
     provideClientHydration(withEventReplay()),
     { provide: LOCALE_ID, useValue: 'de-DE' },
     { provide: MAT_DATE_FORMATS, useValue: CUSTOM_DATE_FORMATS },

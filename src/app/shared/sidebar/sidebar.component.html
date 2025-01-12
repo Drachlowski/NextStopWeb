@@ -33,18 +33,30 @@ mat-icon {
         <mat-icon>departure_board</mat-icon>
         <span>Display Boards</span>
       </a>
-      <a mat-list-item routerLink="/admin/stops" routerLinkActive="active">
-        <mat-icon>location_on</mat-icon>
-        <span>Stops</span>
-      </a>
-      <a mat-list-item routerLink="/admin/routes" routerLinkActive="active">
-        <mat-icon>alt_route</mat-icon>
-        <span>Routes</span>
-      </a>
-      <a mat-list-item routerLink="/admin/holidays" routerLinkActive="active">
-        <mat-icon>event</mat-icon>
-        <span>Holidays</span>
-      </a>
+      @if (isLoggedIn()) {
+        <a mat-list-item routerLink="/admin/stops" routerLinkActive="active">
+          <mat-icon>location_on</mat-icon>
+          <span>Stops</span>
+        </a>
+        <a mat-list-item routerLink="/admin/routes" routerLinkActive="active">
+          <mat-icon>alt_route</mat-icon>
+          <span>Routes</span>
+        </a>
+        <a mat-list-item routerLink="/admin/holidays" routerLinkActive="active">
+          <mat-icon>event</mat-icon>
+          <span>Holidays</span>
+        </a>
+        <a mat-list-item (click)="logout()">
+          <mat-icon>logout</mat-icon>
+          <span>Logout</span>
+        </a>
+      }
+      @else {
+        <a mat-list-item (click)="authenticate()">
+          <mat-icon>login</mat-icon>
+          <span>Login</span>
+        </a>
+      }
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
