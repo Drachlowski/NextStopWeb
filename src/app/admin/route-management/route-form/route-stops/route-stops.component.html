@@ -1,0 +1,66 @@
+<div class="route-stops-container">
+  @if (isEditMode && routeId) {
+    <div class="add-stop-form">
+      <h4>Add a Stop to Route</h4>
+      <mat-form-field class="full-width">
+        <mat-label>Select Stop</mat-label>
+        <mat-select [(ngModel)]="newStopId" name="newStopId">
+          <mat-option *ngFor="let s of stops" [value]="s.id">{{ s.name }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Stop Sequence</mat-label>
+        <input matInput type="number" [(ngModel)]="newStopSequence" name="newStopSequence" />
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Delay (minutes)</mat-label>
+        <input matInput type="number" [(ngModel)]="newDelay" name="newDelay" />
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" (click)="addStop()">Add Stop</button>
+    </div>
+
+    <hr />
+
+    <mat-table [dataSource]="routeStops" class="mat-elevation-z8">
+      <ng-container matColumnDef="stopName">
+        <mat-header-cell *matHeaderCellDef>Stop</mat-header-cell>
+        <mat-cell *matCellDef="let rs">{{ getStopName(rs.id) }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="stopSequence">
+        <mat-header-cell *matHeaderCellDef>Sequence</mat-header-cell>
+        <mat-cell *matCellDef="let rs">{{ rs.stopSequence }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="delay">
+        <mat-header-cell *matHeaderCellDef>Delay</mat-header-cell>
+        <mat-cell *matCellDef="let rs">{{ rs.scheduled }} min</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+        <mat-cell *matCellDef="let rs">
+          <button mat-icon-button color="warn" (click)="deleteStop(rs.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+    @if (!routeStops.length) {
+      <mat-card class="mat-elevation-z4">
+        <mat-card-content>
+          <p>No stops assigned yet. Add a stop above to get started.</p>
+        </mat-card-content>
+      </mat-card>
+    }
+  } @else {
+    <p>Please save the route first to manage the stops.</p>
+  }
+</div>

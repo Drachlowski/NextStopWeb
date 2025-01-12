@@ -1,0 +1,60 @@
+<div class="route-list-container">
+  <h2>Route List</h2>
+
+  <div class="actions">
+    <button mat-raised-button color="primary" [routerLink]="'new'">
+      Add Route
+    </button>
+  </div>
+
+  <mat-table [dataSource]="routes" class="mat-elevation-z8">
+    <ng-container matColumnDef="routeName">
+      <mat-header-cell *matHeaderCellDef>Route Name</mat-header-cell>
+      <mat-cell *matCellDef="let route">{{ route.routeName }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="validityStartDate">
+      <mat-header-cell *matHeaderCellDef>Start Date</mat-header-cell>
+      <mat-cell *matCellDef="let route">{{ route.validityStartDate | date:'shortDate' }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="validityEndDate">
+      <mat-header-cell *matHeaderCellDef>End Date</mat-header-cell>
+      <mat-cell *matCellDef="let route">
+        @if (route.validityEndDate) {
+          {{ route.validityEndDate | date:'shortDate' }}
+        } @else {
+          -
+        }
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="daysOfOperation">
+      <mat-header-cell *matHeaderCellDef>Days of Op.</mat-header-cell>
+      <mat-cell *matCellDef="let route">{{ route.daysOfOperation }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+      <mat-cell *matCellDef="let route">
+        <button mat-icon-button color="accent" [routerLink]="route.id?.toString()">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="deleteRoute(route.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  @if (!routes.length) {
+    <mat-card class="mat-elevation-z4">
+      <mat-card-content>
+        <p>No routes found. Add a new route to get started.</p>
+      </mat-card-content>
+    </mat-card>
+  }
+</div>

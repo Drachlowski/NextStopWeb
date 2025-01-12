@@ -141,3 +141,63 @@ body {
   justify-content: flex-end;
   gap: 1rem;
 }
+
+
+.route-list-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.route-list-container .actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+}
+
+.route-form-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.route-form-container .full-width {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.route-form-container .actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.route-form-container .route-stops-section {
+  margin-top: 2rem;
+  background: #fafafa;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.route-stops-container {
+  margin-top: 1rem;
+}
+
+.route-stops-container .add-stop-form {
+  margin-bottom: 1rem;
+  background: #f8f8f8;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.route-stops-container .full-width {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+

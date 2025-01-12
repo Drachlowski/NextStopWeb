@@ -16,6 +16,13 @@ export const routes: Routes = [
         (m) => m.STOP_MANAGEMENT_ROUTES
       ),
   },
+  {
+    path: 'admin/routes',
+    loadChildren: () =>
+      import('./admin/route-management/route-management.routes').then(
+        (m) => m.ROUTE_MANAGEMENT_ROUTES
+      ),
+  },
   { path: '', redirectTo: 'admin/holidays', pathMatch: 'full' },
   { path: '**', redirectTo: 'admin/holidays' }
 ];

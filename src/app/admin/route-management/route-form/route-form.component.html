@@ -1,0 +1,38 @@
+<div class="route-form-container">
+  <h2>{{ isEditMode ? 'Edit Route' : 'Add Route' }}</h2>
+
+  <form (ngSubmit)="save()" #routeForm="ngForm">
+    <mat-form-field class="full-width">
+      <mat-label>Route Name</mat-label>
+      <input matInput name="routeName" [(ngModel)]="routeData.routeName" required />
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Validity Start Date</mat-label>
+      <input matInput type="date" name="validityStartDate" [(ngModel)]="routeData.validityStartDate" required />
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Validity End Date</mat-label>
+      <input matInput type="date" name="validityEndDate" [(ngModel)]="routeData.validityEndDate" />
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Days of Operation</mat-label>
+      <input matInput name="daysOfOperation" [(ngModel)]="routeData.daysOfOperation" />
+    </mat-form-field>
+
+    <div class="route-stops-section">
+      <h3>Route Stops</h3>
+
+      <app-route-stops [routeId]="routeData.id" [isEditMode]="isEditMode"></app-route-stops>
+    </div>
+
+    <div class="actions">
+      <button mat-raised-button color="primary" type="submit" [disabled]="routeForm.invalid">
+        Save
+      </button>
+      <button mat-button color="warn" type="button" (click)="cancel()">Cancel</button>
+    </div>
+  </form>
+</div>
