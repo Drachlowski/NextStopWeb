@@ -106,3 +106,38 @@ body {
   justify-content: flex-end;
   gap: 1rem;
 }
+
+.stop-list-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.stop-list-container .actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+}
+
+.stop-form-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.stop-form-container .full-width {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.stop-form-container .actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
