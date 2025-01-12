@@ -348,3 +348,22 @@ body {
   color: #e53935;
   font-weight: bold;
 }
+
+
+.sidenav-container {
+  height: 100vh;
+}
+
+.sidenav-container .sidenav {
+  width: 240px;
+  background: #fafafa;
+}
+
+.sidenav-container mat-icon {
+  margin-right: 16px;
+}
+
+.sidenav-container .active {
+  font-weight: bold;
+  color: yellow;
+}

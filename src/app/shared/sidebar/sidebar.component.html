@@ -1,0 +1,33 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav mode="side" opened class="sidenav">
+    <mat-nav-list>
+      <a mat-list-item routerLink="/user/timetable" routerLinkActive="active">
+        <mat-icon>schedule</mat-icon>
+        <span>Timetable</span>
+      </a>
+      <a mat-list-item routerLink="/user/stop-search" routerLinkActive="active">
+        <mat-icon>search</mat-icon>
+        <span>Stop Search</span>
+      </a>
+      <a mat-list-item routerLink="/user/display-boards" routerLinkActive="active">
+        <mat-icon>departure_board</mat-icon>
+        <span>Display Boards</span>
+      </a>
+      <a mat-list-item routerLink="/admin/stops" routerLinkActive="active">
+        <mat-icon>location_on</mat-icon>
+        <span>Stops</span>
+      </a>
+      <a mat-list-item routerLink="/admin/routes" routerLinkActive="active">
+        <mat-icon>alt_route</mat-icon>
+        <span>Routes</span>
+      </a>
+      <a mat-list-item routerLink="/admin/holidays" routerLinkActive="active">
+        <mat-icon>event</mat-icon>
+        <span>Holidays</span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <ng-content></ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>
