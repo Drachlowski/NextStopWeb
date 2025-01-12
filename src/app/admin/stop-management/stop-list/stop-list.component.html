@@ -1,0 +1,52 @@
+<div class="stop-list-container">
+  <h2>Stop List</h2>
+
+  <div class="actions">
+    <button mat-raised-button color="primary" [routerLink]="'new'">Add Stop</button>
+  </div>
+
+  <mat-table [dataSource]="stops" class="mat-elevation-z8">
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+      <mat-cell *matCellDef="let stop">{{ stop.name }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="shortName">
+      <mat-header-cell *matHeaderCellDef>Short Name</mat-header-cell>
+      <mat-cell *matCellDef="let stop">{{ stop.shortName }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="latitude">
+      <mat-header-cell *matHeaderCellDef>Latitude</mat-header-cell>
+      <mat-cell *matCellDef="let stop">{{ stop.latitude }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="longitude">
+      <mat-header-cell *matHeaderCellDef>Longitude</mat-header-cell>
+      <mat-cell *matCellDef="let stop">{{ stop.longitude }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+      <mat-cell *matCellDef="let stop">
+        <button mat-icon-button color="accent" [routerLink]="stop.id?.toString()">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="deleteStop(stop.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  @if (!stops?.length) {
+    <mat-card class="mat-elevation-z4">
+      <mat-card-content>
+        <p>No stops found. Add a new stop to get started.</p>
+      </mat-card-content>
+    </mat-card>
+  }
+</div>

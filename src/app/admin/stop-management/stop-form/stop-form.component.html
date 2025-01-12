@@ -1,0 +1,32 @@
+<div class="stop-form-container">
+  <h2>{{ isEditMode ? 'Edit Stop' : 'Add Stop' }}</h2>
+
+  <form (ngSubmit)="save()" #stopForm="ngForm">
+    <mat-form-field class="full-width">
+      <mat-label>Name</mat-label>
+      <input matInput name="name" [(ngModel)]="stop.name" required />
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Short Name</mat-label>
+      <input matInput name="shortName" [(ngModel)]="stop.shortName" />
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Latitude</mat-label>
+      <input matInput type="number" name="latitude" [(ngModel)]="stop.latitude" required />
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Longitude</mat-label>
+      <input matInput type="number" name="longitude" [(ngModel)]="stop.longitude" required />
+    </mat-form-field>
+
+    <div class="actions">
+      <button mat-raised-button color="primary" type="submit" [disabled]="stopForm.invalid">
+        Save
+      </button>
+      <button mat-button color="warn" type="button" (click)="cancel()">Cancel</button>
+    </div>
+  </form>
+</div>
