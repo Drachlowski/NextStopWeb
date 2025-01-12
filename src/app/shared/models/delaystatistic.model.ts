@@ -1,4 +1,4 @@
-export class Statistics {
+export class DelayStatistic {
     constructor(
         routeId?: number,
         routeName?: string,
@@ -7,7 +7,5 @@ export class Statistics {
         delayedPercentage?: number,
         slightlyDelayedPercentage?: number,
         heavilyDelayedPercentage?: number,
-    ) {
-
-    }
+    ) {}
 }
