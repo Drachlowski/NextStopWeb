@@ -1,6 +1,6 @@
 import { TimetableResponse } from './timetableresponse.model';
 
-describe('Timetableresponse', () => {
+describe('TimetableResponse', () => {
   it('should create an instance', () => {
     expect(new TimetableResponse()).toBeTruthy();
   });

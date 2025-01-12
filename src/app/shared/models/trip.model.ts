@@ -6,6 +6,6 @@ export class Trip {
         public routeId?: number,
         public startTime?: Date,
         public currentDelay?: number,
-        public route: Route
+        public route?: Route
     ) {}
 }
