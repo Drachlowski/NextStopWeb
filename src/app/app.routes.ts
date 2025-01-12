@@ -30,6 +30,13 @@ export const routes: Routes = [
         (m) => m.STOP_SEARCH_ROUTES
       ),
   },
+  {
+    path: 'user/timetable',
+    loadChildren: () =>
+      import('./user/timetable/timetable.routes').then(
+        (m) => m.TIMETABLE_ROUTES
+      ),
+  },
   { path: '', redirectTo: 'admin/holidays', pathMatch: 'full' },
   { path: '**', redirectTo: 'admin/holidays' }
 ];

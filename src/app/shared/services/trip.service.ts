@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { Trip } from '../models/trip.model';
+import { TimetableRequest } from '../models/timetablerequest.model';
 
 @Injectable({
   providedIn: 'root'
@@ -39,6 +40,11 @@ export class TripService {
 
   delete(id: number): Observable<any> {
     return this.http.delete<any>(`${environment.server}/api/Trips/${id}`)
+      .pipe(catchError(this.errorHandler));
+  }
+
+  searchTimetable(req: TimetableRequest): Observable<any> {
+    return this.http.post<any>(`${environment.server}/api/Trips/timetable`, req)
       .pipe(catchError(this.errorHandler));
   }
 }

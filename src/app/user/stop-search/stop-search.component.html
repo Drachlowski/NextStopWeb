@@ -12,7 +12,7 @@
       <div class="form-field">
         <mat-form-field class="full-width">
           <mat-label>Name</mat-label>
-          <input matInput [(ngModel)]="nameSearchTerm" name="nameSearchTerm" />
+          <input matInput [(ngModel)]="nameSearchTerm" name="nameSearchTerm"  (keyup)="keyup.emit(nameSearchTerm)" />
         </mat-form-field>
       </div>
     }
@@ -21,12 +21,12 @@
       <div class="form-field">
         <mat-form-field class="full-width">
           <mat-label>Latitude</mat-label>
-          <input matInput type="number" [(ngModel)]="latitude" name="latitude" />
+          <input matInput type="number" [(ngModel)]="latitude" name="latitude" (keyup)="keyup.emit(latitude?.toString())" />
         </mat-form-field>
 
         <mat-form-field class="full-width">
           <mat-label>Longitude</mat-label>
-          <input matInput type="number" [(ngModel)]="longitude" name="longitude" />
+          <input matInput type="number" [(ngModel)]="longitude" name="longitude" (keyup)="keyup.emit(longitude?.toString())" />
         </mat-form-field>
       </div>
     }
