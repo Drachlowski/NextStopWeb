@@ -12,6 +12,8 @@ import { Trip } from '../../../shared/models/trip.model';
 import { RouteService } from '../../../shared/services/route.service';
 import { Route } from '../../../shared/models/route.model';
 import { NextDeparture } from '../../../shared/models/next-departure.model';
+import { Stop } from '../../../shared/models/stop.model';
+import { StopService } from '../../../shared/services/stop.service';
 
 @Component({
   selector: 'app-display-board',
@@ -37,10 +39,19 @@ export class DisplayBoardComponent implements OnInit {
   limit = new FormControl<number | null>(5);
   currentDateTime = new FormControl<string | null>(null);
   errorMessage = '';
+  stops: Stop[] = [];
 
-  constructor(private tripService: TripService, private routeService: RouteService) {}
+  constructor(private tripService: TripService, private routeService: RouteService, private stopService: StopService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.routeService.getAll().subscribe((routes) => {
+      this.routes = routes || [];
+    });
+
+    this.stopService.getAll().subscribe((stops) => {
+      this.stops = stops || [];
+    });
+  }
 
   loadTrips(): void {
     if (!this.stopId.value) {
@@ -48,10 +59,6 @@ export class DisplayBoardComponent implements OnInit {
       return;
     }
     this.errorMessage = '';
-
-    this.routeService.getAll().subscribe((routes) => {
-      this.routes = routes || [];
-    });
 
     const limit = this.limit.value || 5;
     const currentDate = this.currentDateTime.value ?? (Date.now()).toString();
@@ -67,6 +74,11 @@ export class DisplayBoardComponent implements OnInit {
           console.error(err);
         },
       });
+  }
+
+  getStopName(stopId: number): string {
+    const foundStop = this.stops.find(s => s.id === stopId);
+    return foundStop ? foundStop.name ?? '' : '';
   }
 
   getRouteName(routeId: number): string {
