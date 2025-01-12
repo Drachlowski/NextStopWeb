@@ -15,43 +15,46 @@
       </mat-form-field>
 
       <mat-form-field class="full-width">
-        <mat-label>Delay (minutes)</mat-label>
+        <mat-label>Delay (offset in minutes from last stop)</mat-label>
         <input matInput type="number" [(ngModel)]="newDelay" name="newDelay" />
       </mat-form-field>
 
-      <button mat-raised-button color="primary" (click)="addStop()">Add Stop</button>
+      <button mat-raised-button color="primary" (click)="addStop()" type="button">Add Stop</button>
     </div>
 
     <hr />
 
-    <mat-table [dataSource]="routeStops" class="mat-elevation-z8">
-      <ng-container matColumnDef="stopName">
-        <mat-header-cell *matHeaderCellDef>Stop</mat-header-cell>
-        <mat-cell *matCellDef="let rs">{{ getStopName(rs.id) }}</mat-cell>
-      </ng-container>
+    @if (routeId) {
 
-      <ng-container matColumnDef="stopSequence">
-        <mat-header-cell *matHeaderCellDef>Sequence</mat-header-cell>
-        <mat-cell *matCellDef="let rs">{{ rs.stopSequence }}</mat-cell>
-      </ng-container>
+      <mat-table [dataSource]="routeStops" class="mat-elevation-z8">
+        <ng-container matColumnDef="stopName">
+          <mat-header-cell *matHeaderCellDef>Stop</mat-header-cell>
+          <mat-cell *matCellDef="let rs">{{ rs.stop.name }}</mat-cell>
+        </ng-container>
 
-      <ng-container matColumnDef="delay">
-        <mat-header-cell *matHeaderCellDef>Delay</mat-header-cell>
-        <mat-cell *matCellDef="let rs">{{ rs.scheduled }} min</mat-cell>
-      </ng-container>
+        <ng-container matColumnDef="stopSequence">
+          <mat-header-cell *matHeaderCellDef>Sequence</mat-header-cell>
+          <mat-cell *matCellDef="let rs">{{ rs.stopSequence }}</mat-cell>
+        </ng-container>
 
-      <ng-container matColumnDef="actions">
-        <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
-        <mat-cell *matCellDef="let rs">
-          <button mat-icon-button color="warn" (click)="deleteStop(rs.id)">
-            <mat-icon>delete</mat-icon>
-          </button>
-        </mat-cell>
-      </ng-container>
+        <ng-container matColumnDef="delay">
+          <mat-header-cell *matHeaderCellDef>Offset</mat-header-cell>
+          <mat-cell *matCellDef="let rs">{{ rs.scheduled }} min</mat-cell>
+        </ng-container>
 
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-    </mat-table>
+        <ng-container matColumnDef="actions">
+          <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+          <mat-cell *matCellDef="let rs">
+            <button mat-icon-button color="warn" (click)="deleteStop(rs.id)" type="button">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+    }
 
     @if (!routeStops.length) {
       <mat-card class="mat-elevation-z4">

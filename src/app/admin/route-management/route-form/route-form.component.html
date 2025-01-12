@@ -9,12 +9,25 @@
 
     <mat-form-field class="full-width">
       <mat-label>Validity Start Date</mat-label>
-      <input matInput type="date" name="validityStartDate" [(ngModel)]="routeData.validityStartDate" required />
+      <input
+        matInput
+        [matDatepicker]="datePicker"
+        name="validityStartDate"
+        [(ngModel)]="routeData.validityStartDate"
+        required />
+        <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
+        <mat-datepicker #datePicker></mat-datepicker>
     </mat-form-field>
 
     <mat-form-field class="full-width">
       <mat-label>Validity End Date</mat-label>
-      <input matInput type="date" name="validityEndDate" [(ngModel)]="routeData.validityEndDate" />
+      <input
+        matInput
+        [matDatepicker]="endDatePicker"
+        name="validityEndDate"
+        [(ngModel)]="routeData.validityEndDate" />
+      <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #endDatePicker></mat-datepicker>
     </mat-form-field>
 
     <mat-form-field class="full-width">
@@ -25,7 +38,7 @@
     <div class="route-stops-section">
       <h3>Route Stops</h3>
 
-      <app-route-stops [routeId]="routeData.id" [isEditMode]="isEditMode"></app-route-stops>
+      <app-route-stops [routeIdInput]="routeData.id!" [isEditMode]="isEditMode"></app-route-stops>
     </div>
 
     <div class="actions">

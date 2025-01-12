@@ -4,9 +4,15 @@ import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { RouteService } from '../../../shared/services/route.service';
 import { Route as RouteModel } from '../../../shared/models/route.model';
 import { RouteStopsComponent } from './route-stops/route-stops.component';
+
+
+const ROUTES_URL = '/admin/routes'
+
 
 @Component({
   selector: 'app-route-form',
@@ -16,11 +22,14 @@ import { RouteStopsComponent } from './route-stops/route-stops.component';
     FormsModule,
     MatInputModule,
     MatButtonModule,
-    RouteStopsComponent
+    RouteStopsComponent,
+    MatNativeDateModule,
+    MatDatepickerModule
   ],
   providers: [RouteService],
   templateUrl: './route-form.component.html'
 })
+
 export class RouteFormComponent implements OnInit {
   routeData: RouteModel = new RouteModel();
   isEditMode = false;
@@ -52,16 +61,16 @@ export class RouteFormComponent implements OnInit {
   save(): void {
     if (this.isEditMode && this.routeData.id) {
       this.routeService.update(this.routeData.id, this.routeData).subscribe(() => {
-        this.router.navigate(['/admin/routes']);
+        this.router.navigate([ROUTES_URL]);
       });
     } else {
       this.routeService.save(this.routeData).subscribe(() => {
-        this.router.navigate(['/admin/routes']);
+        this.router.navigate([ROUTES_URL]);
       });
     }
   }
 
   cancel(): void {
-    this.router.navigate(['/admin/routes']);
+    this.router.navigate([ROUTES_URL]);
   }
 }
