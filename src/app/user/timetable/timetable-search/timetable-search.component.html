@@ -1,0 +1,38 @@
+<mat-card class="mat-elevation-z4 timetable-search-container">
+  <mat-card-content>
+    <h2>Timetable</h2>
+
+    <div class="form-field">
+      <mat-form-field class="full-width">
+        <mat-label>Start Stop</mat-label>
+        <mat-select [(ngModel)]="startStopId" name="startStopId">
+          <mat-option *ngFor="let s of stops" [value]="s.id">
+            {{ s.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="form-field">
+      <mat-form-field class="full-width">
+        <mat-label>End Stop</mat-label>
+        <mat-select [(ngModel)]="endStopId" name="endStopId">
+          <mat-option *ngFor="let s of stops" [value]="s.id">
+            {{ s.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="form-field">
+      <mat-form-field class="full-width">
+        <mat-label>Departure Time (optional)</mat-label>
+        <input matInput type="datetime-local" [(ngModel)]="departureTime" name="departureTime" />
+      </mat-form-field>
+    </div>
+
+    <div class="actions">
+      <button mat-raised-button color="primary" (click)="searchTimetable()">Search</button>
+    </div>
+  </mat-card-content>
+</mat-card>

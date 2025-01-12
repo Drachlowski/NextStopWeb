@@ -1,0 +1,39 @@
+<div class="timetable-result-container">
+  <mat-card-content>
+    @if (isLoading) {
+      <p>Loading timetable...</p>
+    } @else if (errorMessage) {
+      <p class="error">{{ errorMessage }}</p>
+    } @else if (results.length) {
+      <h2>Connections</h2>
+
+      <mat-table [dataSource]="results">
+        <ng-container matColumnDef="route">
+          <mat-header-cell *matHeaderCellDef> Route </mat-header-cell>
+          <mat-cell *matCellDef="let item"> {{ item.routeName }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="departure">
+          <mat-header-cell *matHeaderCellDef> Departure </mat-header-cell>
+          <mat-cell *matCellDef="let item">
+            {{ item.departureTime | date:'short' }}
+            @if (item.delay) {
+              <span class="delay">&nbsp;(+{{ item.delay }} min)</span>
+            }
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="arrival">
+          <mat-header-cell *matHeaderCellDef> Arrival </mat-header-cell>
+          <mat-cell *matCellDef="let item"> {{ item.arrivalTime | date:'short' }} </mat-cell>
+        </ng-container>
+
+
+        <mat-header-row *matHeaderRowDef="['route', 'departure', 'arrival']"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: ['route', 'departure', 'arrival']"></mat-row>
+      </mat-table>
+    } @else {
+      <p>No timetable data found.</p>
+    }
+  </mat-card-content>
+</div>
