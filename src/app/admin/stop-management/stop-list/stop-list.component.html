@@ -42,7 +42,7 @@
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
 
-  @if (!stops?.length) {
+  @if (!stops.length) {
     <mat-card class="mat-elevation-z4">
       <mat-card-content>
         <p>No stops found. Add a new stop to get started.</p>
