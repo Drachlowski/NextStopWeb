@@ -7,49 +7,48 @@
     </button>
   </div>
 
-  @if (holidays != null && holidays.length > 0) {
-    <mat-table [dataSource]="holidays">
-      <ng-container matColumnDef="name">
-        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-        <mat-cell *matCellDef="let holiday"> {{ holiday.name }} </mat-cell>
-      </ng-container>
 
-      <ng-container matColumnDef="date">
-        <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
-        <mat-cell *matCellDef="let holiday"> {{ holiday.date | date: 'shortDate' }} </mat-cell>
-      </ng-container>
+  <mat-table [dataSource]="holidays">
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+      <mat-cell *matCellDef="let holiday"> {{ holiday.name }} </mat-cell>
+    </ng-container>
 
-      <ng-container matColumnDef="endDate">
-        <mat-header-cell *matHeaderCellDef> End Date </mat-header-cell>
-        <mat-cell *matCellDef="let holiday">
-          {{ holiday.endDate ? (holiday.endDate | date: 'shortDate') : '-' }}
-        </mat-cell>
-      </ng-container>
+    <ng-container matColumnDef="date">
+      <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
+      <mat-cell *matCellDef="let holiday"> {{ holiday.date | date: 'shortDate' }} </mat-cell>
+    </ng-container>
 
-      <ng-container matColumnDef="isSchoolHoliday">
-        <mat-header-cell *matHeaderCellDef> School Holiday </mat-header-cell>
-        <mat-cell *matCellDef="let holiday">
-          {{ holiday.isSchoolHoliday ? 'Yes' : 'No' }}
-        </mat-cell>
-      </ng-container>
+    <ng-container matColumnDef="endDate">
+      <mat-header-cell *matHeaderCellDef> End Date </mat-header-cell>
+      <mat-cell *matCellDef="let holiday">
+        {{ holiday.endDate ? (holiday.endDate | date: 'shortDate') : '-' }}
+      </mat-cell>
+    </ng-container>
 
-      <ng-container matColumnDef="actions">
-        <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
-        <mat-cell *matCellDef="let holiday">
-          <button mat-icon-button color="accent" [routerLink]="holiday.id?.toString()">
-            <mat-icon>edit</mat-icon>
-          </button>
-          <button mat-icon-button color="warn" (click)="deleteHoliday(holiday.id)">
-            <mat-icon>delete</mat-icon>
-          </button>
-        </mat-cell>
-      </ng-container>
+    <ng-container matColumnDef="isSchoolHoliday">
+      <mat-header-cell *matHeaderCellDef> School Holiday </mat-header-cell>
+      <mat-cell *matCellDef="let holiday">
+        {{ holiday.isSchoolHoliday ? 'Yes' : 'No' }}
+      </mat-cell>
+    </ng-container>
 
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-    </mat-table>
-  }
-  @else {
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+      <mat-cell *matCellDef="let holiday">
+        <button mat-icon-button color="accent" [routerLink]="holiday.id?.toString()">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="deleteHoliday(holiday.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  @if (!holidays.length) {
     <mat-card>
       <mat-card-content>
         <p>No holidays found. Add a new holiday to get started.</p>
