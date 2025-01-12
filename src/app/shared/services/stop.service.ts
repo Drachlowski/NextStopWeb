@@ -41,4 +41,14 @@ export class StopService {
     return this.http.delete<any>(`${environment.server}/api/Stops/${id}`)
       .pipe(catchError(this.errorHandler));
   }
+
+  search(term: string): Observable<Stop[]> {
+    return this.http.get<Stop[]>(`${environment.server}/api/Stops/search?name=${term}`)
+      .pipe(catchError(this.errorHandler));
+  }
+
+  nearby(latitude: number, longitude: number): Observable<Stop[]> {
+    return this.http.get<Stop[]>(`${environment.server}/api/Stops/nearby?latitude=${latitude}&longitude=${longitude}`)
+      .pipe(catchError(this.errorHandler));
+  }
 }

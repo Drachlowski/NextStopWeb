@@ -1,0 +1,59 @@
+<mat-card class="mat-elevation-z4 search-container">
+  <mat-card-content>
+    <h2>Stop Search</h2>
+    <div class="search-type">
+      <mat-radio-group [(ngModel)]="searchType">
+        <mat-radio-button [value]="'name'">Search by Name</mat-radio-button>
+        <mat-radio-button [value]="'coords'">Search by Coordinates</mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+    @if (searchType === 'name') {
+      <div class="form-field">
+        <mat-form-field class="full-width">
+          <mat-label>Name</mat-label>
+          <input matInput [(ngModel)]="nameSearchTerm" name="nameSearchTerm" />
+        </mat-form-field>
+      </div>
+    }
+
+    @if (searchType === 'coords') {
+      <div class="form-field">
+        <mat-form-field class="full-width">
+          <mat-label>Latitude</mat-label>
+          <input matInput type="number" [(ngModel)]="latitude" name="latitude" />
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <mat-label>Longitude</mat-label>
+          <input matInput type="number" [(ngModel)]="longitude" name="longitude" />
+        </mat-form-field>
+      </div>
+    }
+
+    <div class="actions">
+      <button mat-raised-button color="primary" (click)="search()">
+        Search
+      </button>
+    </div>
+
+    @if (isSearching) {
+      <p>Searching...</p>
+    }
+
+    @if (errorMessage) {
+      <p class="error">{{ errorMessage }}</p>
+    }
+
+    @if (stops.length) {
+      <h3>Results</h3>
+      <mat-list>
+        <mat-list-item *ngFor="let s of stops">
+          {{ s.name }} ({{ s.latitude }}, {{ s.longitude }})
+        </mat-list-item>
+      </mat-list>
+    } @else if (!isSearching && !errorMessage) {
+      <p>No results yet. Perform a search above.</p>
+    }
+  </mat-card-content>
+</mat-card>

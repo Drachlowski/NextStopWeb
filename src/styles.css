@@ -201,3 +201,32 @@ body {
   margin-bottom: 1rem;
 }
 
+
+
+.search-container {
+  max-width: 600px;
+  margin: 2rem auto;
+}
+
+.search-container .search-type {
+  margin-bottom: 1rem;
+}
+
+.search-container .form-field {
+  margin-bottom: 1rem;
+}
+
+.search-container .full-width {
+  width: 100%;
+}
+
+.search-container .actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+.search-container .error {
+  color: #e53935;
+  margin-top: 1rem;
+}

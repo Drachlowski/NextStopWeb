@@ -23,6 +23,13 @@ export const routes: Routes = [
         (m) => m.ROUTE_MANAGEMENT_ROUTES
       ),
   },
+  {
+    path: 'user/stop-search',
+    loadChildren: () =>
+      import('./user/stop-search/stop-search.routes').then(
+        (m) => m.STOP_SEARCH_ROUTES
+      ),
+  },
   { path: '', redirectTo: 'admin/holidays', pathMatch: 'full' },
   { path: '**', redirectTo: 'admin/holidays' }
 ];
