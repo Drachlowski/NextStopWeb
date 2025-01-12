@@ -1,0 +1,52 @@
+<div class="display-board-container">
+  <mat-card-content>
+    <h2>Display Board</h2>
+
+    <form class="form-container">
+      <mat-form-field class="full-width">
+        <mat-label>Stop ID</mat-label>
+        <input matInput type="number" [formControl]="stopId" placeholder="Enter Stop ID" required />
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Limit</mat-label>
+        <input matInput type="number" [formControl]="limit" placeholder="Max Results (optional)" />
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Current Date/Time</mat-label>
+        <input matInput type="datetime-local" [formControl]="currentDateTime" />
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" (click)="loadTrips()">Load Trips</button>
+    </form>
+
+    @if (errorMessage) {
+      <p class="error">{{ errorMessage }}</p>
+    }
+
+    <mat-table [dataSource]="departures" class="mat-elevation-z8">
+      <ng-container matColumnDef="route">
+        <mat-header-cell *matHeaderCellDef> Route </mat-header-cell>
+        <mat-cell *matCellDef="let trip"> {{ getRouteName(trip.routeId) }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="departure">
+        <mat-header-cell *matHeaderCellDef> Departure </mat-header-cell>
+        <mat-cell *matCellDef="let trip"> {{ trip.departureTime | date:'short' }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="delay">
+        <mat-header-cell *matHeaderCellDef> Delay </mat-header-cell>
+        <mat-cell *matCellDef="let trip"> {{ trip.currentDelay || 'On Time' }} </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+
+    @if (!departures.length && !errorMessage) {
+      <p>No trips available for the selected stop.</p>
+    }
+  </mat-card-content>
+</div>

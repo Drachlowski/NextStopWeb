@@ -5,6 +5,7 @@ import { catchError } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { Trip } from '../models/trip.model';
 import { TimetableRequest } from '../models/timetablerequest.model';
+import { NextDeparture } from '../models/next-departure.model';
 
 @Injectable({
   providedIn: 'root'
@@ -45,6 +46,11 @@ export class TripService {
 
   searchTimetable(req: TimetableRequest): Observable<any> {
     return this.http.post<any>(`${environment.server}/api/Trips/timetable`, req)
+      .pipe(catchError(this.errorHandler));
+  }
+
+  getNextDepartures(stopId: number, limit: number, currentDateTime: string): Observable<NextDeparture[]> {
+    return this.http.get<NextDeparture[]>(`${environment.server}/api/Trips/next-departures/${stopId}?limit=${limit}&currentTime=${currentDateTime}`)
       .pipe(catchError(this.errorHandler));
   }
 }

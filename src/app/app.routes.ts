@@ -37,6 +37,14 @@ export const routes: Routes = [
         (m) => m.TIMETABLE_ROUTES
       ),
   },
+  {
+    path: 'user/display-boards',
+    loadChildren: () => {
+      return import('./user/display-boards/display-boards.routes').then(
+        (m) => m.DISPLAY_BOARDS_ROUTES
+      );
+    }
+  },
   { path: '', redirectTo: 'admin/holidays', pathMatch: 'full' },
   { path: '**', redirectTo: 'admin/holidays' }
 ];
