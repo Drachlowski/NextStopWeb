@@ -1,0 +1,63 @@
+<div class="holiday-form-container">
+  <h2>{{ isEditMode ? 'Edit Holiday' : 'Add Holiday' }}</h2>
+
+  <form (ngSubmit)="save()" #holidayForm="ngForm">
+    <mat-form-field class="full-width">
+      <mat-label>Name</mat-label>
+      <input
+        matInput
+        name="name"
+        [(ngModel)]="holiday.name"
+        required
+        #name="ngModel"
+      />
+      @if (name.invalid && name.touched) {
+        <mat-error>Name is required</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Date</mat-label>
+      <input
+        matInput
+        [matDatepicker]="datePicker"
+        name="date"
+        [(ngModel)]="holiday.date"
+        required
+        #date="ngModel"
+      />
+      <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
+      <mat-datepicker #datePicker></mat-datepicker>
+      @if (date.invalid && date.touched) {
+        <mat-error>Date is required</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>End Date</mat-label>
+      <input
+        matInput
+        [matDatepicker]="endDatePicker"
+        name="endDate"
+        [(ngModel)]="holiday.endDate"
+      />
+      <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #endDatePicker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-checkbox
+      [(ngModel)]="holiday.isSchoolHoliday"
+      name="isSchoolHoliday"
+    >
+      Is this a school holiday?
+    </mat-checkbox>
+
+
+    <div class="actions">
+      <button mat-raised-button color="primary" type="submit" [disabled]="holidayForm.invalid">
+        Save
+      </button>
+      <button mat-button color="warn" type="button" (click)="cancel()">Cancel</button>
+    </div>
+  </form>
+</div>
